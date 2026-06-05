@@ -1,3 +1,5 @@
+#![allow(clippy::all)]
+
 use crossbeam::channel;
 use futures::task;
 use futures::task::ArcWake;
