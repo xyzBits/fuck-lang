@@ -1,3 +1,6 @@
+mod lifetime;
+mod learn_async;
+
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }

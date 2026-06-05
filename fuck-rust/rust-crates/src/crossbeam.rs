@@ -33,3 +33,52 @@ fn test() {
 
     consumer_thread.join().expect("couldn't join consumer");
 }
+
+use core::range::Range;
+
+#[derive(Debug, Copy, Clone)]
+struct SliceWindow {
+    x_bounds: Range<usize>,
+    y_bounds: Range<usize>,
+}
+
+
+
+#[test]
+fn test_1() {
+
+    let window = SliceWindow {
+        x_bounds: Range::from(0..10),
+        y_bounds: Range::from(5..15),
+    };
+
+    let window_copy1 = window;
+    let window_copy2 = window;
+
+    println!("{:?}", window_copy1);
+    println!("{:?}", window_copy2);
+
+    println!("{}", window.x_bounds.end);
+    println!("{:?}", window.y_bounds.start);
+
+}
+
+
+fn fatal_error(msg: &str) -> ! {
+    panic!("fatal error:{}", msg);
+}
+
+#[test]
+#[ignore]
+fn test_never() {
+    let server_response: Result<(i32, String), &str> = Err("database connection timeout");
+
+    let (status_code, response_body) = match server_response {
+        Ok(data) => data,
+        Err(e) => {
+            fatal_error(e)
+        }
+    };
+
+    println!("status code: {}, response: {}", status_code, response_body);
+}
