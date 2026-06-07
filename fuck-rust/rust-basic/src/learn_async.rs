@@ -468,3 +468,18 @@ mod learn_tokio_spawn {
         }
     }
 }
+
+#[test]
+fn test_send_success() {
+    let data = "hello world".to_string();
+
+    let handle = thread::spawn(move || {
+        println!("msg={}", data);
+    });
+
+    handle.join().unwrap();
+
+    let x = f64::NAN;
+
+    // println!("{}", data);
+}

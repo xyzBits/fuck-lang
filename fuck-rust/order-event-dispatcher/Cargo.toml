@@ -1,0 +1,18 @@
+[package]
+name = "order-event-dispatcher"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tokio = { workspace=true }
+crossbeam = "0.8.4"
+
+[lints.clippy]
+pedantic = "deny"
+perf = "deny"
+
+[lints.rust]
+#warnings = "deny"
+dead_code = "warn"
+unused_variables = "warn"
+unused_imports = "deny"

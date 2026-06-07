@@ -601,6 +601,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "my-macros"
+version = "0.1.0"
+dependencies = [
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "nom"
 version = "7.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -624,6 +632,14 @@ name = "once_cell"
 version = "1.21.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f7c3e4beb33f85d45ae3e3a1792185706c8e16d043238c593331cc7cd313b50"
+
+[[package]]
+name = "order-event-dispatcher"
+version = "0.1.0"
+dependencies = [
+ "crossbeam",
+ "tokio",
+]
 
 [[package]]
 name = "parking_lot"
@@ -763,6 +779,7 @@ dependencies = [
  "console-subscriber",
  "crossbeam",
  "futures",
+ "my-macros",
  "tokio",
 ]
 

@@ -1,8 +1,8 @@
 [workspace]
 resolver = "2"
 
-members = ["rust-basic"
-, "rust-crates", "rust-ffi"]
+members = ["my-macros", "order-event-dispatcher", "rust-basic"
+    , "rust-crates", "rust-ffi"]
 
 # 在这里定义的依赖，子项目可以通过 { workspace = true } 来引用
 [workspace.dependencies]
