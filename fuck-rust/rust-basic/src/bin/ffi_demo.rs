@@ -25,7 +25,7 @@ unsafe extern "system" {
 // 这个函数负责把 Rust 的 &str 翻译成 C 听得懂的格式。
 fn to_wstring(s: &str) -> Vec<u16> {
     OsStr::new(s)
-        .encode_wide()         // 转换成 UTF-16
+        .encode_wide() // 转换成 UTF-16
         .chain(std::iter::once(0)) // 灵魂一步：在末尾强行补上 '\0' (C语言字符串的结束符)
         .collect()
 }

@@ -1,7 +1,7 @@
+use futures::FutureExt;
+use futures::executor::block_on;
 use std::pin::Pin;
 use std::rc::Rc;
-use futures::executor::block_on;
-use futures::FutureExt;
 
 #[test]
 fn test_raw_pointers() {
@@ -49,8 +49,6 @@ fn test_box() {
     assert_eq!(*heap_data, 100);
 }
 
-
-
 #[test]
 fn test_rc_and_get_mut() {
     let mut shared_ptr = Rc::new(42);
@@ -89,7 +87,6 @@ fn test_pin_box() {
     block_on(another_key);
 }
 
-
 #[test]
 fn test_ref_magic() {
     let my_box = Some(String::from("核心机密"));
@@ -102,16 +99,12 @@ fn test_ref_magic() {
         None => {}
     }
 
-
     match &my_box {
         Some(inner_str) => {
             println!("看一眼金条 {}", inner_str);
         }
         None => {}
     }
-
-
-
 
     let mut my_opt = Some(42);
 
@@ -124,3 +117,7 @@ fn test_ref_magic() {
 
     println!("{:?}", my_opt);
 }
+
+fn do_something<T: Sized>(_t: T) {}
+
+fn do_everything<T: ?Sized>(_t: &T) {}

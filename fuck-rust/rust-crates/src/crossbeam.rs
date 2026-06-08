@@ -42,11 +42,8 @@ struct SliceWindow {
     y_bounds: Range<usize>,
 }
 
-
-
 #[test]
 fn test_1() {
-
     let window = SliceWindow {
         x_bounds: Range::from(0..10),
         y_bounds: Range::from(5..15),
@@ -60,9 +57,7 @@ fn test_1() {
 
     println!("{}", window.x_bounds.end);
     println!("{:?}", window.y_bounds.start);
-
 }
-
 
 fn fatal_error(msg: &str) -> ! {
     panic!("fatal error:{}", msg);
@@ -75,9 +70,7 @@ fn test_never() {
 
     let (status_code, response_body) = match server_response {
         Ok(data) => data,
-        Err(e) => {
-            fatal_error(e)
-        }
+        Err(e) => fatal_error(e),
     };
 
     println!("status code: {}, response: {}", status_code, response_body);

@@ -14,6 +14,5 @@ async fn main() {
 
     tokio::spawn(async move {
         OrderEventConsumer::init_consumer(receiver);
-
     });
 }

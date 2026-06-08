@@ -88,12 +88,9 @@ struct OrderBook {
 
 impl OrderBook {
     fn best_bid(&self) -> Option<&Order> {
-        self.bids
-            .last_key_value()
-            .map(|(_price, order)| order)
+        self.bids.last_key_value().map(|(_price, order)| order)
     }
 }
-
 
 async fn hello_self_ref() {
     let mut buffer = [0u8; 1024];
@@ -101,7 +98,6 @@ async fn hello_self_ref() {
     do_io().await;
 
     println!("data = {}", *ptr);
-
 }
 
 async fn do_io() {}

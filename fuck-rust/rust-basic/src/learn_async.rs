@@ -386,8 +386,8 @@ mod learn_tokio_spawn {
         let start_time = Instant::now();
 
         thread::spawn(move || {
-           thread::sleep(Duration::from_millis(50));
-            let _  = rx.recv().unwrap();// 50ms 后才收走第一单，腾出空位
+            thread::sleep(Duration::from_millis(50));
+            let _ = rx.recv().unwrap(); // 50ms 后才收走第一单，腾出空位
         });
 
         println!("主线程 准备发送第二单，但此时通道是满的");
@@ -400,8 +400,6 @@ mod learn_tokio_spawn {
 
         assert!(elapsed >= Duration::from_millis(50));
     }
-
-
 
     #[tokio::test(flavor = "current_thread")]
     async fn test_tokio_channel_yielding_when_full() {
@@ -428,13 +426,10 @@ mod learn_tokio_spawn {
 
         let res2 = rx.recv().await.unwrap();
         assert_eq!(res2, "第二单");
-
-
-
     }
 
     use tokio::sync::oneshot;
-    use tokio::time::{sleep};
+    use tokio::time::sleep;
 
     #[tokio::test(flavor = "current_thread")]
     async fn test_oneshot_channel() {
