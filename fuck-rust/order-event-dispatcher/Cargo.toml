@@ -4,15 +4,26 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-tokio = { workspace=true }
-crossbeam = "0.8.4"
+tokio = { workspace = true, features = ["full"] }
 
-[lints.clippy]
-pedantic = "deny"
-perf = "deny"
+# 使用这个库，为自定义的错误实现 std::error::Error trait 和 std::fmt::Display
+thiserror = "2"
 
-[lints.rust]
-#warnings = "deny"
-dead_code = "warn"
-unused_variables = "warn"
-unused_imports = "deny"
+#异步日志，tracing 记录，subscriber 收集，然后输出到console 文件 或者发给外部监控系统
+tracing = "0.1"
+tracing-subscriber = {version = "0.3", features = ["fmt"]}
+
+# 只有在 unix 下才加载依赖，条件编译机制
+[target.'cfg(unix)'.dependencies]
+pprof = {version = "0.13", features = ["flamegraph"]}
+
+
+# dev 是开发，跑测试 bench 时信用的依赖，cargo build --release 时，不会被打入
+[dev-dependencies]
+# 只在开发，性能测试时使用，
+criterion = {version = "0.5", features = ["async_tokio"]}
+
+[[bench]]
+name = "dispatch_bench"
+# 表示不用 rust 默认的 test harness，而是让 criterion 自己生成 benchmark 入口
+harness = false

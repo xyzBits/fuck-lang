@@ -106,3 +106,49 @@ async fn do_io() {}
 fn test_io() {
     hello_self_ref();
 }
+
+
+
+fn first_word(s: &str) -> usize {
+    let bytes = s.as_bytes();
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
+}
+
+#[test]
+fn test_first_word() {
+    let mut s = "hello world".to_string();
+    let word = first_word(&s);
+    s.clear();
+    println!("the first word is at index: {}", word);
+
+    // println!("{}", &s[..word]);
+}
+
+fn first_word2(s: &str) -> &str {
+    let bytes = s.as_bytes();
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
+}
+
+#[test]
+fn test_first_word2() {
+    // slice 包含两个信息，指向起始位置的指针
+    let mut s = "hello world".to_string();
+
+    let word = first_word2(&s);
+
+    // s.clear();
+    println!("the first word is at index: {}", word);
+    // 字符串字面量本身就是切片，指向二进制程序特定内存位置的切片，这也是字符串字面量不可变的原因
+}
